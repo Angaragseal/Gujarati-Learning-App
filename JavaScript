@@ -1,0 +1,108 @@
+let currentSection = '';
+let isDrawing = false;
+let x = 0;
+let y = 0;
+const canvas = document.getElementById('writingCanvas');
+const ctx = canvas?.getContext('2d');
+
+// Section selection function
+function selectSection(section) {
+    currentSection = section;
+    document.getElementById('section-selection').style.display = 'none';
+    document.getElementById('login-section').style.display = 'block';
+}
+
+// Login function
+function login(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    if (email && password) {
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById(`${currentSection}-section`).style.display = 'block';
+
+        let profession = '';
+        switch (currentSection) {
+            case 'student':
+                profession = 'Student';
+                break;
+            case 'parent':
+                profession = 'Parent';
+                break;
+            case 'teacher':
+                profession = 'Teacher';
+                break;
+            case 'hr':
+                profession = 'HR (Company)';
+                break;
+        }
+        document.getElementById('user-info').innerText = `User ID: ${email} | Profession: ${profession}`;
+    } else {
+        alert('Please enter your email and password.');
+    }
+}
+
+// Navigate between sections
+function navigate(option) {
+    document.getElementById(`${currentSection}-section`).style.display = 'none';
+
+    if (option === 'learn-alphabets') {
+        document.getElementById('learn-alphabets-section').style.display = 'block';
+    } else if (option === 'writing-pad') {
+        document.getElementById('writing-pad-section').style.display = 'block';
+    } else {
+        alert(`Navigating to ${option.replace('-', ' ')}...`);
+        // Add more navigation logic here
+    }
+}
+
+// Clear canvas function for writing pad
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// Back to student section
+function backToStudentSection() {
+    document.getElementById('learn-alphabets-section').style.display = 'none';
+    document.getElementById('writing-pad-section').style.display = 'none';
+    document.getElementById('student-section').style.display = 'block';
+}
+
+// Back to main menu
+function backToMainMenu() {
+    document.querySelectorAll('.section').forEach(section => section.style.display = 'none');
+    document.getElementById('section-selection').style.display = 'block';
+    document.getElementById('user-info').innerText = '';
+}
+
+// Writing pad canvas drawing logic
+if (canvas) {
+    canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        [x, y] = [e.offsetX, e.offsetY];
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+        if (isDrawing) {
+            draw(e.offsetX, e.offsetY);
+        }
+    });
+
+    canvas.addEventListener('mouseup', () => {
+        isDrawing = false;
+        [x, y] = [0, 0];
+    });
+
+    canvas.addEventListener('mouseout', () => {
+        isDrawing = false;
+    });
+
+    function draw(newX, newY) {
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(newX, newY);
+        ctx.stroke();
+        [x, y] = [newX, newY];
+    }
+}
