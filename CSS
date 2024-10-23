@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://img.freepik.com/free-vector/colorful-ahmedabad-skyline-illustration_23-2148654329.jpg?semt=ais_hybrid ');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.app-container {
+    width: 95%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 248, 220, 0.9); 
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+header {
+    text-align: center;
+    background-color: #FF8C00; 
+    color: white;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+#user-info {
+    text-align: center;
+    margin-top: 10px;
+    color: #8B4513; 
+}
+
+.section {
+    text-align: center;
+}
+
+h2 {
+    color: #DAA520; 
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    width: 95%;
+    margin: 10px auto;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #8B4513; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #A0522D;
+}
+
+.responsive-image {
+    width: 100%;
+    height: auto;
+    border: 2px solid #DAA520; 
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+#writingCanvas {
+    border: 2px solid #DAA520; 
+    background-color: #fff;
+    touch-action: none; 
+}
+
+button {
+    display: inline-block;
+    margin: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 10px;
+    }
+}
